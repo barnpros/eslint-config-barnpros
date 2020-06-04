@@ -1,0 +1,74 @@
+# CircleCI Version
+version: 2.1
+# Define default options to be used on each job
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:lts
+# Define Jobs
+jobs:
+  increment_version:
+    <<: *defaults
+    steps:
+      # Checkout code from GitHub
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      # Install packages not included in cache
+      - run:
+          name: Install
+          command: yarn install
+      # Update cache
+      - save_cache:
+          # Cache node_modules
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      # Configure Git with the Barn Pros Machine User
+      - run:
+          name: Configure Git
+          command: git config user.email "tech@barnpros.com" && git config user.name "BarnPros Machine"
+      # Increment Version
+      - run:
+          name: Increment Version
+          command: yarn ci:version
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - .
+  release:
+    <<: *defaults
+    steps:
+      # Checkout code from GitHub
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish --access public
+# Define Workflow Order
+workflows:
+  version: 2
+  increment_version_and_deploy_to_npm:
+    jobs:
+      # Version should be incremented when PR is made
+      # for changes to be merged into master
+      - increment_version:
+          filters:
+            branches:
+              ignore:
+                - master
+      # When changes are merged into master a new version
+      # should be published to npm
+      - release:
+          filters:
+            branches:
+              only:
+                - master
