@@ -101,7 +101,7 @@ module.exports = {
         selector: "variable",
         types: ["boolean"],
         format: ["PascalCase"],
-        prefix: ["is", "should", "has", "can", "did", "will"],
+        prefix: ["is", "should", "has", "can", "did", "will", "do"],
       },
       /**
        * Function parameters should only be camelCase
@@ -110,6 +110,7 @@ module.exports = {
       {
         selector: "parameter",
         format: ["camelCase"],
+        leadingUnderscore: "allow",
       },
     ],
     /**
@@ -195,7 +196,7 @@ module.exports = {
           {
             selector: "typeLike",
             format: ["PascalCase"],
-            suffix: ["Type"],
+            suffix: ["Type", "Map"],
           },
           {
             selector: "typeParameter",
