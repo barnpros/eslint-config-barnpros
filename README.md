@@ -47,7 +47,7 @@ module.exports = {
   overrides: [
     {
       files: ["tests/**/*"],
-      extends: ["@barnpros/eslint-config/override/jest"],
+      extends: ["@barnpros/eslint-config/jest"],
     },
   ],
 };
@@ -59,10 +59,7 @@ Example:
 
 ```js
 module.exports = {
-  extends: [
-    "@barnpros/eslint-config",
-    "@barnpros/eslint-config/override/react",
-  ],
+  extends: ["@barnpros/eslint-config", "@barnpros/eslint-config/react"],
   parserOptions: {
     project: "./tsconfig.js",
   },
