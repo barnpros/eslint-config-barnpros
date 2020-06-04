@@ -198,7 +198,7 @@ module.exports = {
             suffix: ["Type"],
           },
           {
-            selector: ["typeParameter"],
+            selector: "typeParameter",
             format: ["PascalCase"],
             prefix: ["T"],
           },

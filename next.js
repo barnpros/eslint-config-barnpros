@@ -2,7 +2,6 @@
  * Specific rules for the Pages folder required by Next.js
  */
 module.exports = {
-  extends: ["./react"],
   rules: {
     /**
      ** Import Rules (included in Airbnb-Typescript)
