@@ -1,31 +1,14 @@
 /* eslint-disable sort-keys -- Eslint config files are more easily parsed if keys are in a specific order, not alphabetical */
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-    node: true,
-  },
   extends: [
     "eslint:recommended",
-    "airbnb-typescript",
-    "plugin:@typescript-eslint/eslint-recommended",
+    "airbnb-base",
     "plugin:eslint-comments/recommended",
     "plugin:promise/recommended",
     "plugin:unicorn/recommended",
     "prettier",
-    "prettier/@typescript-eslint",
   ],
-  plugins: ["@typescript-eslint", "eslint-comments", "promise", "unicorn"],
-  globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly",
-  },
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    project: "./tsconfig.json",
-    ecmaVersion: 2018,
-    sourceType: "module",
-  },
+  plugins: ["eslint-comments", "promise", "unicorn"],
   /**
    * Rules are grouped together by the package they are defined in
    * (following the order in which they are extended in the above `extends` property),
@@ -82,49 +65,6 @@ module.exports = {
       },
     ],
     /**
-     ** Typescript-Eslint Rules
-     */
-    /**
-     * Indentaion is handled by prettier.
-     */
-    "@typescript-eslint/indent": "off",
-    /**
-     * Consistent naming conventions should be enforced, and different conventions should be allowed in different use cases.
-     */
-    "@typescript-eslint/naming-convention": [
-      "error",
-      /**
-       * Variables containing a boolean must require a prefix to help indicate what the value is representing.
-       * Example: canHazCheeseburger
-       */
-      {
-        selector: "variable",
-        types: ["boolean"],
-        format: ["PascalCase"],
-        prefix: ["is", "should", "has", "can", "did", "will", "do"],
-      },
-      /**
-       * Function parameters should only be camelCase
-       * Example: myFunctionParameter
-       */
-      {
-        selector: "parameter",
-        format: ["camelCase"],
-        leadingUnderscore: "allow",
-      },
-    ],
-    /**
-     * Unused variables should throw an error,
-     * however if underscores or a leading underscore is used it is to indicate that variable is intentionally unused.
-     */
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        varsIgnorePattern: "^_?([^_]+)?$",
-      },
-    ],
-    "@typescript-eslint/quotes": "off",
-    /**
      ** Import Rules (included in Airbnb-Typescript)
      */
     /**
@@ -180,41 +120,5 @@ module.exports = {
       },
     ],
   },
-  overrides: [
-    /**
-     * Specific rules for the Store folder
-     */
-    {
-      files: ["store/**/*"],
-      rules: {
-        "@typescript-eslint/naming-convention": [
-          "error",
-          /**
-           * TypeScript types defined in the store should be in PascalCase and be followed by the word Type.
-           * Example: SomeCustomType
-           */
-          {
-            selector: "typeLike",
-            format: ["PascalCase"],
-            suffix: ["Type", "Map"],
-          },
-          {
-            selector: "typeParameter",
-            format: ["PascalCase"],
-            prefix: ["T"],
-          },
-          /**
-           * TypeScript interfaces defined in the store should be in PascalCase prefixed by a capital I.
-           * Example: ISomeCustomObject
-           */
-          {
-            selector: "interface",
-            format: ["PascalCase"],
-            prefix: ["I"],
-          },
-        ],
-      },
-    },
-  ],
 };
 /* eslint-enable sort-keys */
