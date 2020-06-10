@@ -1,6 +1,6 @@
 {
   "name": "@barnpros/eslint-config",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "An opinionated, sharable ESlint config used across Barn Pros TypeScript and JavaScript applications.",
   "repository": "https://github.com/barnpros/eslint-config-barnpros.git",
   "license": "MIT",
@@ -13,13 +13,12 @@
     "increment-version": "yarn increment-version:commit && yarn increment-version:push",
     "increment-version:commit": "standard-version --releaseCommitMessageFormat \"chore(release): {{currentTag}} [ci skip]\"",
     "increment-version:push": "git push --follow-tags -u origin ${CIRCLE_BRANCH}",
-    "lint-staged:eslint": "eslint --fix --cache -c ./development.js",
+    "lint-staged:eslint": "eslint --fix --cache",
     "lint-staged:prettier": "prettier --write"
   },
   "dependencies": {
     "@storybook/eslint-config-storybook": "^2.4.0",
     "@typescript-eslint/eslint-plugin": "^3.1.0",
-    "@typescript-eslint/parser": "^3.1.0",
     "eslint-config-airbnb-typescript": "^8.0.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-cypress": "^2.11.1",
@@ -44,6 +43,6 @@
     "prettier": "^2.0.5",
     "sort-package-json": "^1.44.0",
     "standard-version": "^8.0.0",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.5"
   }
 }
