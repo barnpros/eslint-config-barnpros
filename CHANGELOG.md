@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/barnpros/eslint-config-barnpros/compare/v1.3.0...v2.0.0) (2020-06-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **config:** Users will now need to provide their own configurations. This package now provides ONLY rules.
+
+* **config:** Removed non rule declarations from config files, moved TS rules to override ([130905e](https://github.com/barnpros/eslint-config-barnpros/commit/130905ec5e2748490d81ed127fb43924391da8f9))
+
 ## 1.3.0 (2020-06-04)
 
 
