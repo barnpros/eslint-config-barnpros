@@ -1,6 +1,6 @@
 {
   "name": "@barnpros/eslint-config",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "An opinionated, sharable ESlint config used across Barn Pros TypeScript and JavaScript applications.",
   "repository": "https://github.com/barnpros/eslint-config-barnpros.git",
   "license": "MIT",
